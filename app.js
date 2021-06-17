@@ -10,6 +10,8 @@ app.use(cors());
 utils.createCustomers(25)
 utils.createVehicles(100)
 
+const newCustomers = [];
+
 app.get('/', (req, res) => res.send('Car Dealership API ready!'));
 
 app.get('/api/vehicles', (req, res) => {
@@ -21,11 +23,12 @@ app.get('/api/vehicles/:id', (req, res) => {
 });
 
 app.get('/api/customers', (req, res) => {
-    res.json(utils.customers);
+    res.json(utils.customers + newCustomers);
 });
 
 app.post('/api/customers/:id', (req, res) => {
-    res.json(utils.customers.filter((c) => c.id === req.params.id)[0]);
+    const allCustomers = utils.customers + newCustomers;
+    res.json(allCustomers.filter((c) => c.id === req.params.id)[0]);
 });
 
 app.post('/api/login', (req, res) => {
@@ -33,7 +36,10 @@ app.post('/api/login', (req, res) => {
 });
 
 app.post('/api/signup', (req, res) => {
-    res.json({ token: '1234567890'})
+    const customer = req.body;
+    customer.id = Math.floor(Math.random() * 2000) + 500;
+    newCustomers.push(customer);
+    res.json({ token: customer.id })
 });
 
 app.post('/api/token', (req, res) => {
