@@ -4,32 +4,35 @@ const faker = require('faker');
 
 const vehicles = [];
 const customers = [];
-const makes = ['Honda', 'Ford', 'Tesla', 'Volkswagen', 'Porsche', 'BMW', 'Toyota', 'Kia', 'Jeep', 'Chrysler', 'GM'];
-// TODO: Finish ...
-const newMakes = {
-    Honda: ['civic'],
-    Ford: ['F150', 'Mustang'],
-    Tesla: ['Model S', 'Model Y'],
+const makes = ['Honda', 'Ford', 'Tesla', 'Volkswagen', 'Porsche', 'BMW', 'Toyota', 'Kia', 'Jeep'];
+const carData = {
+    Honda: ['Civic', 'Accord', 'Passport'],
+    Ford: ['F150', 'Mustang', 'Taurus'],
+    Tesla: ['Model S', 'Model Y', 'Model 3'],
     Volkswagen: ['Passat', 'Golf'],
-    Toyota: ['Unknown'],
+    Toyota: ['Camry', 'Prius', 'Corolla'],
     BMW: ['series 1', 'series 2'],
-    Porsche: ['Porsche'],
-
+    Porsche: ['Boxter', 'Cayman'],
+    Kia: ['Soul', 'Sportage', 'Telluride'],
+    Jeep: ['Cherokee', 'Sport', 'Liberty']
 };
 const colors = ['Red', 'Silver', 'Black', 'Blue', 'Silver'];
 
 function createVehicles(count) {
     for (let i = 1; i < count; i++) {
-        vehicles.push({
-            id: Math.floor(Math.random() * 2000) + 500,
-            make: makes[Math.floor(Math.random() * makes.length)],
-            model: 'Unknown',
-            year: Math.floor(Math.random() * (2021 - 2000) + 2000),
-            image: 'https://via.placeholder.com/200',
-            color: 'Silver',
-            price: faker.finance.amount(),
-            available: true
-        })
+        for (const make in carData) {
+            let models = carData[make];
+            vehicles.push({
+                id: Math.floor(Math.random() * 2000) + 500,
+                make: make,
+                model: models[Math.floor(Math.random() * models.length)],
+                year: Math.floor(Math.random() * (2021 - 2000) + 2000),
+                image: 'https://via.placeholder.com/200',
+                color: colors[Math.floor(Math.random() * colors.length)],
+                price: faker.finance.amount(),
+                available: true
+            });
+        }
     }
 }
 

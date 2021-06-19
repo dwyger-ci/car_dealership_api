@@ -8,7 +8,7 @@ const utils = require('./utils');
 app.use(cors());
 
 utils.createCustomers(25)
-utils.createVehicles(100)
+utils.createVehicles(50) // creates them in groups of 12 (ex. 50 * 12 = 600)
 
 const newCustomers = [];
 
