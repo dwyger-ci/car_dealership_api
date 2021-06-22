@@ -14,7 +14,9 @@ const carData = {
     BMW: ['series 1', 'series 2'],
     Porsche: ['Boxter', 'Cayman'],
     Kia: ['Soul', 'Sportage', 'Telluride'],
-    Jeep: ['Cherokee', 'Sport', 'Liberty']
+    Jeep: ['Cherokee', 'Sport', 'Liberty'],
+    Lightfreighter: ['Millenium Falcon'],
+    Spacestation: ['Internation Space Station']
 };
 const colors = ['Red', 'Silver', 'Black', 'Blue', 'Silver'];
 
@@ -26,7 +28,7 @@ function createVehicles(count) {
                 id: guid.v4(),
                 make: make,
                 model: models[Math.floor(Math.random() * models.length)],
-                year: Math.floor(Math.random() * (2021 - 2000) + 2000),
+                year: Math.floor(Math.random() * (2050 - 2000) + 2000),
                 image: 'https://via.placeholder.com/200',
                 color: colors[Math.floor(Math.random() * colors.length)],
                 price: faker.finance.amount(),
