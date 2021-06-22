@@ -1,10 +1,10 @@
 const faker = require('faker');
+const guid = require('uuid');
 
 // Faker API: https://marak.github.io/faker.js/
 
 const vehicles = [];
 const customers = [];
-const makes = ['Honda', 'Ford', 'Tesla', 'Volkswagen', 'Porsche', 'BMW', 'Toyota', 'Kia', 'Jeep'];
 const carData = {
     Honda: ['Civic', 'Accord', 'Passport'],
     Ford: ['F150', 'Mustang', 'Taurus'],
@@ -23,7 +23,7 @@ function createVehicles(count) {
         for (const make in carData) {
             let models = carData[make];
             vehicles.push({
-                id: Math.floor(Math.random() * 2000) + 500,
+                id: guid.v4(),
                 make: make,
                 model: models[Math.floor(Math.random() * models.length)],
                 year: Math.floor(Math.random() * (2021 - 2000) + 2000),
@@ -39,7 +39,7 @@ function createVehicles(count) {
 function createCustomers(count) {
     for (let i = 1; i < count; i++) {
         customers.push({
-            id: Math.floor(Math.random() * 2000) + 500,
+            id: guid.v4(),
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: faker.internet.email()
