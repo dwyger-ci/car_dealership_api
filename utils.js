@@ -5,18 +5,20 @@ const guid = require('uuid');
 
 const vehicles = [];
 const customers = [];
+const models = [];
+const makes = [];
 const carData = {
-    Honda: ['Civic', 'Accord', 'Passport'],
-    Ford: ['F150', 'Mustang', 'Taurus'],
+    Fighter: ['Tie Fighter', 'X-Wing', 'Passport'],
+    Bomber: ['Tie Bomber', 'Droid Bomber', 'Assult Bomber'],
     Tesla: ['Model S', 'Model Y', 'Model 3'],
     Volkswagen: ['Passat', 'Golf'],
     Toyota: ['Camry', 'Prius', 'Corolla'],
     BMW: ['series 1', 'series 2'],
     Porsche: ['Boxter', 'Cayman'],
-    Kia: ['Soul', 'Sportage', 'Telluride'],
-    Jeep: ['Cherokee', 'Sport', 'Liberty'],
-    Lightfreighter: ['Millenium Falcon'],
-    Spacestation: ['Internation Space Station']
+    Moons: ['The Moon', 'Uropa', 'Ganymede'],
+    Planets: ['Pluto', 'Mercury', 'Mars'],
+    Lightfreighter: ['Millenium Falcon', 'The Ghost'],
+    Spacestation: ['Internation Space Station', 'Tiangong space station', 'Salyut 7']
 };
 const colors = ['Red', 'Silver', 'Black', 'Blue', 'Silver'];
 
@@ -49,9 +51,28 @@ function createCustomers(count) {
     }
 }
 
+function getMakes() {
+  for (const make in carData) {
+    makes.push(make);
+  }
+}
+
+function getModels() {
+  for (const make in carData) {
+    const modelList = carData[make]
+    for (let i = 0; i < modelList.length; i++) {
+      models.push(modelList[i]);
+    }
+  }
+}
+
 module.exports = {
     vehicles,
     customers,
     createCustomers,
-    createVehicles
+    createVehicles,
+    getModels,
+    models,
+    getMakes,
+    makes
 }

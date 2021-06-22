@@ -9,6 +9,8 @@ app.use(cors());
 
 utils.createCustomers(25)
 utils.createVehicles(50) // creates them in groups of 12 (ex. 50 * 12 = 600)
+utils.getMakes()
+utils.getModels()
 
 const newCustomers = [];
 
@@ -17,6 +19,14 @@ app.get('/', (req, res) => res.send('Car Dealership API ready!'));
 app.get('/api/vehicles', (req, res) => {
     res.json(utils.vehicles);
 });
+
+app.get('/api/makes', (req, res) => {
+  res.json(utils.makes)
+})
+
+app.get('/api/models', (req, res) => {
+  res.json(utils.models)
+})
 
 app.get('/api/vehicles/:id', (req, res) => {
     res.json(utils.vehicles.filter((v) => v.id === req.params.id)[0]);
